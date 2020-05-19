@@ -1,0 +1,33 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet as base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/core/sdk AS build
+RUN mkdir -p /MyBackEnd
+COPY . /MyBackEnd
+RUN echo "Going well $(ls)"
+WORKDIR /MyBackEnd
+RUN dotnet publish -c Release -o /app
+
+FROM base as final
+WORKDIR /app
+ENTRYPOINT ["dotnet", "MyBackEnd.dll"]
+
+# For more info see: http://aka.ms/VSContainerToolingDockerfiles
+# FROM microsoft/aspnetcore AS base
+# WORKDIR /app
+# EXPOSE 80
+
+# FROM microsoft/aspnetcore-build AS builder
+# WORKDIR /
+# COPY . /app
+# RUN dotnet build -c Release -o /app
+
+# FROM builder AS publish
+# RUN dotnet publish -c Release -o /app
+
+# FROM base AS production
+# WORKDIR /app
+# COPY --from=publish /app .
+# ENTRYPOINT ["dotnet", "CarApi.dll"]

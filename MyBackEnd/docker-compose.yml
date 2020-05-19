@@ -1,0 +1,37 @@
+version: "3.4"
+
+networks:
+    my-back-end-network:
+        driver: bridge
+
+services:
+    my-back-end-container:
+        # image: my-back-end
+        depends_on:
+            - "my-postgres"
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8000:80"
+        networks:
+            - my-back-end-network
+
+    my-postgres:
+        image: postgres
+        ports:
+            - "5432:5432"
+        restart:
+            always
+        volumes: 
+            - db_volume:/var/lib/postgresql/data
+            - ./dbscripts/create-tables.sql :/docker-entrypoint-initdb.d/create-tables.sql
+        environment: 
+            POSTGRES_USER: "postgres"
+            POSTGRES_PASSWORD: "Admin123"
+            POSTGRES_DB: "MyDatabase"
+            PGPASSWORD: "Admin123"
+        networks:
+            - my-back-end-network
+volumes:
+    db_volume:  

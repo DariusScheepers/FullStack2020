@@ -1,0 +1,44 @@
+version: "3.4"
+
+networks:
+    my-full-stack-network:
+        driver: bridge
+
+services:
+    my-postgres:
+        build: 
+            context: ./db
+            dockerfile: Dockerfile
+        ports:
+            - "5432:5432"
+        environment: 
+            POSTGRES_USER: "postgres"
+            POSTGRES_PASSWORD: "Admin123"
+            POSTGRES_DB: "MyDatabase"
+            PGPASSWORD: "Admin123"
+        networks:
+            - my-full-stack-network
+
+    my-back-end-container:
+        # image: my-back-end
+        depends_on:
+            - "my-postgres"
+        build: 
+            context: ./MyBackEnd
+            dockerfile: Dockerfile
+        ports:
+            - "8000:80"
+        networks:
+            - my-full-stack-network
+    
+    my-front-end-container:
+        # image: my-front-end
+        build:
+            context: ./MyFrontEnd
+            dockerfile: Dockerfile
+        ports:
+            - "8080:80"
+        networks:
+            - my-full-stack-network
+volumes:
+    db_volume:  

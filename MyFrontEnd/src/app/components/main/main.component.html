@@ -1,0 +1,33 @@
+<label>Your Data:</label>
+<p class="output">{{ data }}</p>
+
+<form [formGroup]="newCarFromGroup">
+    <label>New Car:</label>
+    <label>
+        Name:
+        <input type="text" formControlName="name">
+    </label>
+    <label>
+        Price:
+        <input type="number" formControlName="price">
+    </label>
+</form>
+<br />
+<button (click)="submit()">Submit</button>
+
+<br />
+<br />
+<br />
+
+<form [formGroup]="testConnectionFormGroup">
+  <label>Test Connections</label>
+  <label>
+      Connection:
+      <input type="text" formControlName="url">
+  </label>
+  <p>
+    {{ testOutput }}
+  </p>
+</form>
+<br />
+<button (click)="testConnection()">Test Connection</button>
