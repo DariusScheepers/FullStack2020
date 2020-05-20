@@ -6,6 +6,7 @@ networks:
 
 services:
     my-postgres:
+        image: my-postgres
         build: 
             context: ./db
             dockerfile: Dockerfile
@@ -20,7 +21,7 @@ services:
             - my-full-stack-network
 
     my-back-end-container:
-        # image: my-back-end
+        image: my-back-end
         depends_on:
             - "my-postgres"
         build: 
@@ -32,7 +33,7 @@ services:
             - my-full-stack-network
     
     my-front-end-container:
-        # image: my-front-end
+        image: my-front-end
         build:
             context: ./MyFrontEnd
             dockerfile: Dockerfile
