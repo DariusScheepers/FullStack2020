@@ -1,12 +1,24 @@
 {
   "version": 2,
-  "dgSpecHash": "uy3baP0aX/u77ZPlZjqKJL92kgiJ4ZA1iM04IbV6HB+JMfJNOC/xcg6lSSSNRRcC8TqhvFNXmysYND8WDN+W7A==",
+  "dgSpecHash": "+GuMiNAkKqcwv8ml5U2QFk3RJOia0I1uuIFX0Ts235dSKysFp+lvh45aJgKnzDlXOs7GZUrMLR2EHgfwMRPWwg==",
   "success": true,
   "projectFilePath": "C:\\Users\\bbdnet1882\\Documents\\Personal\\Projects\\FullStack2020\\MyBackEnd\\MyBackEnd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bbdnet1882\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.8\\microsoft.visualstudio.azure.containers.tools.targets.1.10.8.nupkg.sha512",
     "C:\\Users\\bbdnet1882\\.nuget\\packages\\npgsql\\4.1.3.1\\npgsql.4.1.3.1.nupkg.sha512",
-    "C:\\Users\\bbdnet1882\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+    "C:\\Users\\bbdnet1882\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
+    "C:\\Users\\bbdnet1882\\.nuget\\packages\\unity\\3.5.1404\\unity.3.5.1404.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Unity 3.5.1404' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Unity",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

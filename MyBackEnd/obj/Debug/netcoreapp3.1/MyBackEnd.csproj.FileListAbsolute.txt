@@ -18,5 +18,3 @@ C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\obj\Debu
 C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\obj\Debug\netcoreapp3.1\MyBackEnd.genruntimeconfig.cache
 C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\bin\Debug\netcoreapp3.1\Npgsql.dll
 C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\obj\Debug\netcoreapp3.1\MyBackEnd.csproj.CopyComplete
-C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\obj\Debug\netcoreapp3.1\MyBackEnd.csproj.CoreCompileInputs.cache
-C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\obj\Debug\netcoreapp3.1\MyBackEnd.MvcApplicationPartsAssemblyInfo.cache
