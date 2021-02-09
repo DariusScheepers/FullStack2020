@@ -8,7 +8,7 @@ using Npgsql;
 
 namespace MyBackEnd.Views
 {
-    public class Database
+    public class Database : IDatabase
     {
         private string username { get; set; }
         private string password { get; set; }
@@ -28,7 +28,7 @@ namespace MyBackEnd.Views
         private void connectToDatabase()
         {
             // string connectionString = $"Host=my-postgres; port=5432; Username={this.username}; Password={this.password}; Database={this.database}";
-            string connectionString = $"Host=my-postgres; port=5432; Username={this.username}; Password={this.password}; Database={this.database}";
+            string connectionString = $"Host=localhost; port=5432; Username={this.username}; Password={this.password}; Database={this.database}";
             Console.WriteLine(connectionString);
             NpgsqlConnection connection = new NpgsqlConnection(connectionString);
             connection.Open();
@@ -88,7 +88,8 @@ namespace MyBackEnd.Views
         public Car getCarWithID(int id)
         {
             Car result = null;
-            List<Car> cars = this.getCars();
+            // List<Car> cars = this.getCars();
+            List<Car> cars = this.RunFunction(1);
             foreach (Car car in cars)
             {
                 if (car.id == id)
@@ -108,5 +109,34 @@ namespace MyBackEnd.Views
             this.command.ExecuteNonQuery();
             return true;
         }
+
+        public bool RunProcedure(string name)
+        {
+            Console.WriteLine("Calling procedure.");
+            string callProcedureCommand = $"CALL public.addcar('${name}')";
+            Console.WriteLine($"Calling Proc Command: {callProcedureCommand}");
+            this.command.CommandText = callProcedureCommand;
+            this.command.ExecuteNonQuery();
+            return true;
+        }
+
+        public List<Car> RunFunction(int greaterThan)
+        {
+            this.command.CommandText = $"SELECT * FROM public.count_cars_higher_than(0)";
+            NpgsqlDataReader reader = this.command.ExecuteReader();
+            List<Car> cars = new List<Car>();
+            while (reader.Read())
+            {
+                Car car = new Car
+                {
+                    id = reader.GetInt32(0),
+                    name = reader.GetString(1),
+                    price = reader.GetInt32(2)
+                };
+                cars.Add(car);
+            }
+            return cars;
+        }
     }
+
 }
