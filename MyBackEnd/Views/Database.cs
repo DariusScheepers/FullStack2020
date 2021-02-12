@@ -10,25 +10,21 @@ namespace MyBackEnd.Views
 {
     public class Database : IDatabase
     {
-        private string username { get; set; }
-        private string password { get; set; }
-        private string database { get; set; }
+        private string username = "postgres";
+        private string password = "Admin123";
+        private string database = "MyDatabase";
 
         private NpgsqlCommand command { get; set; }
 
-        public Database(string username, string password, string database)
+        public Database()
         {
-            this.username = username;
-            this.password = password;
-            this.database = database;
-
             this.connectToDatabase();
         } // https:localhost:5001/api/cars/1
 
         private void connectToDatabase()
         {
             // string connectionString = $"Host=my-postgres; port=5432; Username={this.username}; Password={this.password}; Database={this.database}";
-            string connectionString = $"Host=localhost; port=5432; Username={this.username}; Password={this.password}; Database={this.database}";
+            string connectionString = $"Host=my-postgres; port=5432; Username={this.username}; Password={this.password}; Database={this.database}";
             Console.WriteLine(connectionString);
             NpgsqlConnection connection = new NpgsqlConnection(connectionString);
             connection.Open();

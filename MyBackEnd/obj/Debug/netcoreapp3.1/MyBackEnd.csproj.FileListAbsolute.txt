@@ -18,3 +18,13 @@ C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\obj\Debu
 C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\obj\Debug\netcoreapp3.1\MyBackEnd.genruntimeconfig.cache
 C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\bin\Debug\netcoreapp3.1\Npgsql.dll
 C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\obj\Debug\netcoreapp3.1\MyBackEnd.csproj.CopyComplete
+C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\bin\Debug\netcoreapp3.1\Unity.Abstractions.dll
+C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\bin\Debug\netcoreapp3.1\Unity.Container.dll
+C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\bin\Debug\netcoreapp3.1\Unity.Microsoft.DependencyInjection.dll
+C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\obj\Debug\netcoreapp3.1\MyBackEnd.csproj.CoreCompileInputs.cache
+C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\obj\Debug\netcoreapp3.1\MyBackEnd.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\bin\Debug\netcoreapp3.1\app\web.config
+C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\bin\Debug\netcoreapp3.1\app\appsettings.Development.json
+C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\bin\Debug\netcoreapp3.1\app\appsettings.json
+C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\bin\Debug\netcoreapp3.1\app\MyBackEnd.deps.json
+C:\Users\bbdnet1882\Documents\Personal\Projects\FullStack2020\MyBackEnd\bin\Debug\netcoreapp3.1\app\MyBackEnd.runtimeconfig.json

@@ -14,12 +14,11 @@ namespace MyBackEnd.Controllers
     [Route("/api/cars/")]
     public class CarsController : Controller
     {
-        // GET: /<controller>/
-        private Database database { get; set; }
+        private readonly IDatabase database;
         
-        public CarsController()
+        public CarsController(IDatabase database)
         {
-            this.database = new Database("postgres", "Admin123", "MyDatabase");
+            this.database = database;
             // this.database.createCarsTable();
         }
 

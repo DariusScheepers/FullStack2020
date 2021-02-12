@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+//using Unity;
+using MyBackEnd.Views;
 
 namespace MyBackEnd
 {
@@ -36,7 +38,13 @@ namespace MyBackEnd
                                   });
             });
             services.AddControllers();
+            services.AddSingleton<IDatabase, Database>();
         }
+
+        //public void ConfigureContainer(IUnityContainer container)
+        //{
+        //    //container.RegisterDomainDependencies();
+        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

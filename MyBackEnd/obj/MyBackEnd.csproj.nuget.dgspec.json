@@ -51,7 +51,11 @@
             },
             "Unity": {
               "target": "Package",
-              "version": "[3.5.1404, )"
+              "version": "[5.11.10, )"
+            },
+            "Unity.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.11.5, )"
             }
           },
           "imports": [
@@ -64,6 +68,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+              "version": "[3.1.6, 3.1.6]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[3.1.6, 3.1.6]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.linux-x64",
+              "version": "[3.1.6, 3.1.6]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -73,6 +91,11 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "linux-x64": {
+          "#import": []
         }
       }
     }
