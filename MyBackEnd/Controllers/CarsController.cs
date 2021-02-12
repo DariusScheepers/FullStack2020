@@ -35,7 +35,7 @@ namespace MyBackEnd.Controllers
             Console.WriteLine("Received Info By Post");
             return new Response
             {
-                success = this.database.RunProcedure(car.name)
+                success = this.database.addCar(car)
             };
         }
 

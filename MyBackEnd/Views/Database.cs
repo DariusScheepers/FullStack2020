@@ -84,8 +84,7 @@ namespace MyBackEnd.Views
         public Car getCarWithID(int id)
         {
             Car result = null;
-            // List<Car> cars = this.getCars();
-            List<Car> cars = this.RunFunction(1);
+            List<Car> cars = this.getCars();
             foreach (Car car in cars)
             {
                 if (car.id == id)
