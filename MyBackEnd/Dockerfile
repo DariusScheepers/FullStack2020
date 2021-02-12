@@ -9,5 +9,6 @@ COPY app/ /usr/src/app
 WORKDIR /usr/src/app
 
 EXPOSE 8080
+EXPOSE 5432
 
 ENTRYPOINT [ "dotnet", "MyBackEnd.dll" ]

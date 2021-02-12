@@ -16,9 +16,9 @@ namespace MyBackEnd.Controllers
     {
         private readonly IDatabase database;
         
-        public CarsController(IDatabase database)
+        public CarsController()
         {
-            this.database = database;
+            this.database = new Database();
             // this.database.createCarsTable();
         }
 
