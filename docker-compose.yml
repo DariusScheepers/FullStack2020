@@ -28,7 +28,7 @@ services:
             context: ./MyBackEnd
             dockerfile: Dockerfile
         ports:
-            - "8000:80"
+            - "8081:80"
         networks:
             - my-full-stack-network
     
