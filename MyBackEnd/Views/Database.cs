@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data;
 using MyBackEnd.Models;
 using Npgsql;
 
@@ -10,11 +8,8 @@ namespace MyBackEnd.Views
 {
     public class Database : IDatabase
     {
-        private string username = "postgres";
-        private string password = "Admin123";
-        private string database = "MyDatabase";
-
-        private NpgsqlCommand command { get; set; }
+        private string connectionString;
+        private NpgsqlConnection connection;
 
         public Database()
         {
@@ -23,41 +18,38 @@ namespace MyBackEnd.Views
 
         private void connectToDatabase()
         {
-            // string connectionString = $"Host=my-postgres; port=5432; Username={this.username}; Password={this.password}; Database={this.database}";
-            string connectionString = $"Host=my-postgres; port=5432; Username={this.username}; Password={this.password}; Database={this.database}";
+            connectionString = $"Host=localhost; port=5432; Username=postgres; Password=Admin123; Database=MyDatabase";
+            //connectionString = $"Host=my-postgres; port=5432; Username=postgres; Password=Admin123; Database=MyDatabase";
             Console.WriteLine(connectionString);
-            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+            connection = new NpgsqlConnection(connectionString);
             connection.Open();
 
-            this.command = new NpgsqlCommand
-            {
-                Connection = connection
-            };
-
+            NpgsqlCommand command = new NpgsqlCommand("", connection);
             string sql = "SELECT version()";
-            this.command.CommandText = sql;
-            string version = this.command.ExecuteScalar().ToString();
+            command.CommandText = sql;
+            string version = command.ExecuteScalar().ToString();
             Console.WriteLine($"PostgreSQL version: {version}");
         }
 
         public bool createCarsTable()
         {
+            NpgsqlCommand command = new NpgsqlCommand("", connection);
 
-            this.command.CommandText = "DROP TABLE IF EXISTS cars";
-            this.command.ExecuteNonQuery();
+            command.CommandText = "DROP TABLE IF EXISTS cars";
+            command.ExecuteNonQuery();
 
-            this.command.CommandText = @"CREATE TABLE cars(id SERIAL PRIMARY KEY, 
+            command.CommandText = @"CREATE TABLE cars(id SERIAL PRIMARY KEY, 
                     name VARCHAR(255), price INT)";
-            this.command.ExecuteNonQuery();
+            command.ExecuteNonQuery();
 
-            this.command.CommandText = "INSERT INTO cars(name, price) VALUES('Audi',52642)";
-            this.command.ExecuteNonQuery();
+            command.CommandText = "INSERT INTO cars(name, price) VALUES('Audi',52642)";
+            command.ExecuteNonQuery();
 
-            this.command.CommandText = "INSERT INTO cars(name, price) VALUES('Mercedes',57127)";
-            this.command.ExecuteNonQuery();
+            command.CommandText = "INSERT INTO cars(name, price) VALUES('Mercedes',57127)";
+            command.ExecuteNonQuery();
 
-            this.command.CommandText = "INSERT INTO cars(name, price) VALUES('Skoda',9000)";
-            this.command.ExecuteNonQuery();
+            command.CommandText = "INSERT INTO cars(name, price) VALUES('Skoda',9000)";
+            command.ExecuteNonQuery();
 
             Console.WriteLine($"New Table created called cars");
             return true;
@@ -65,8 +57,9 @@ namespace MyBackEnd.Views
 
         public List<Car> getCars()
         {
-            this.command.CommandText = $"SELECT * FROM cars";
-            NpgsqlDataReader reader = this.command.ExecuteReader();
+            NpgsqlCommand command = new NpgsqlCommand("", connection);
+            command.CommandText = $"SELECT * FROM cars";
+            NpgsqlDataReader reader = command.ExecuteReader();
             List<Car> cars = new List<Car>();
             while (reader.Read())
             {
@@ -84,7 +77,8 @@ namespace MyBackEnd.Views
         public Car getCarWithID(int id)
         {
             Car result = null;
-            List<Car> cars = this.getCars();
+            List<Car> cars = this.RunFunction(1);
+            //List<Car> cars = this.getCars();
             foreach (Car car in cars)
             {
                 if (car.id == id)
@@ -97,28 +91,33 @@ namespace MyBackEnd.Views
 
         public bool addCar(Car car)
         {
+            NpgsqlCommand command = new NpgsqlCommand("", connection);
             Console.WriteLine("Writing to Db");
             string insertCommand = $"INSERT INTO cars(name, price) VALUES('{car.name}', {car.price})";
             Console.WriteLine($"Insert Command: {insertCommand}");
-            this.command.CommandText = insertCommand;
-            this.command.ExecuteNonQuery();
+            command.CommandText = insertCommand;
+            command.ExecuteNonQuery();
             return true;
         }
 
         public bool RunProcedure(string name)
         {
             Console.WriteLine("Calling procedure.");
+            NpgsqlCommand storeProcCommand = new NpgsqlCommand("", connection);
             string callProcedureCommand = $"CALL public.addcar('${name}')";
+            storeProcCommand.CommandText = callProcedureCommand;
             Console.WriteLine($"Calling Proc Command: {callProcedureCommand}");
-            this.command.CommandText = callProcedureCommand;
-            this.command.ExecuteNonQuery();
+            storeProcCommand.ExecuteNonQuery();
             return true;
         }
 
         public List<Car> RunFunction(int greaterThan)
         {
-            this.command.CommandText = $"SELECT * FROM public.count_cars_higher_than(0)";
-            NpgsqlDataReader reader = this.command.ExecuteReader();
+            NpgsqlCommand functionCommand = new NpgsqlCommand("public.count_cars_higher_than", connection);
+            functionCommand.CommandType = CommandType.StoredProcedure;
+            functionCommand.Parameters.AddWithValue("par_minimum_price", greaterThan);
+
+            NpgsqlDataReader reader = functionCommand.ExecuteReader();
             List<Car> cars = new List<Car>();
             while (reader.Read())
             {
